@@ -30,13 +30,19 @@ namespace DiagnoseMe.Tests
             var question = new Question();
             const bool answer = true;
             Human.AnswerOnQuestion(question, answer);
-            Assert.That(question.IsAnsweredAsTrue, @"Human answer error.");
+            Assert.That(question.IsAnsweredAsTrue, @"Human's answer was corrupted.");
         }
 
         [Test]
         public void ChooseAnswer()
         {
-            Assert.That(Human.ChooseAnswer() == false, @"Default human answer error.");
+            Assert.That(Human.ChooseAnswer() == false, @"Default human's answer error.");
+        }
+
+        [Test]
+        public void AnswerOnQuestions()
+        {
+            Assert.DoesNotThrow(() => Human.AnswerOnQuestions(Doctor.GetAllQuestions()), @"Human's answers parse error.");
         }
     }
 }
