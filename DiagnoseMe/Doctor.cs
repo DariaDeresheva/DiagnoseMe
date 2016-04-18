@@ -29,5 +29,15 @@ namespace DiagnoseMe
         {
             return File.ReadLines(FileWithDiseases).Select(Disease.Parse);
         }
+
+        public static Disease FindDisease(IEnumerable<Question> answeredQuestions, IEnumerable<Disease> diseases)
+        {
+            var answeredAsTrueNumbers =
+                answeredQuestions.Where(question => question.IsAnsweredAsTrue).Select(question => question.Number);
+
+            return
+                diseases.OrderByDescending(disease => disease.NumbersOfSymptoms.Intersect(answeredAsTrueNumbers).Count())
+                    .First();
+        }
     }
 }

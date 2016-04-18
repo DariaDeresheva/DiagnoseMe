@@ -6,9 +6,10 @@ namespace DiagnoseMe
 {
     public class Human
     {
-        public static void AnswerOnQuestion(Question question, bool answer)
+        public static Question AnswerOnQuestion(Question question, bool answer)
         {
             question.IsAnsweredAsTrue = answer;
+            return question;
         }
 
         public static bool ChooseAnswer()
@@ -17,13 +18,9 @@ namespace DiagnoseMe
             return stringAnswer != null && bool.Parse(stringAnswer);
         }
 
-        public static void AnswerOnQuestions(IEnumerable<Question> questions)
+        public static IEnumerable<Question> AnswerOnQuestions(IEnumerable<Question> questions)
         {
-            foreach (var question in questions)
-            {
-                var answer = ChooseAnswer();
-                AnswerOnQuestion(question, answer);
-            }
+            return questions.Select(question => AnswerOnQuestion(question, ChooseAnswer()));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace DiagnoseMe.Tests
@@ -61,6 +62,32 @@ namespace DiagnoseMe.Tests
         public void GetAllDiseases()
         {
             Assert.DoesNotThrow(() => Doctor.GetAllDiseases(), @"Disease parse error.");
+        }
+
+        [Test]
+        public void FindDisease()
+        {
+            var questions = new List<Question>
+            {
+                new Question {Number = 1, Text = @"Question 1"},
+                new Question {Number = 2, Text = @"Question 2"}
+            };
+
+            var diseases = new List<Disease>
+            {
+                new Disease {Name = @"Disease 1", NumbersOfSymptoms = new List<int> {questions.First().Number}},
+                new Disease {Name = @"Disease 2", NumbersOfSymptoms = new List<int> {questions.Last().Number}}
+            };
+
+            var answeredQuestions = new List<Question>
+            {
+                Human.AnswerOnQuestion(questions.First(), true),
+                Human.AnswerOnQuestion(questions.Last(), false)
+            };
+
+            var diseaseFound = Doctor.FindDisease(answeredQuestions, diseases);
+
+            Assert.That(diseaseFound.Name == @"Disease 1", @"Analyze answers error.");
         }
     }
 }
