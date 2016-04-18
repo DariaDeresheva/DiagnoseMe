@@ -8,9 +8,16 @@ namespace DiagnoseMe
     {
         public const string FileWithQuestions = @"D:\DiagnoseMe\Docs\Questions.txt";
 
+        public const string FileWithDiseases = @"D:\DiagnoseMe\Docs\Diseases.txt";
+
         public static IEnumerable<string> GetAllQuestionStrings()
         {
             return File.ReadLines(FileWithQuestions);
+        }
+
+        public static IEnumerable<string> GetAllDiseaseStrings()
+        {
+            return File.ReadLines(FileWithDiseases);
         }
 
         public static IEnumerable<Question> GetAllQuestions()

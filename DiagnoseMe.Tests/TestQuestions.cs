@@ -44,5 +44,11 @@ namespace DiagnoseMe.Tests
         {
             Assert.DoesNotThrow(() => Human.AnswerOnQuestions(Doctor.GetAllQuestions()), @"Human's answers parse error.");
         }
+
+        [Test]
+        public void GetAllDiseaseStrings()
+        {
+            Assert.DoesNotThrow(() => Doctor.GetAllDiseaseStrings(), @"File not found.");
+        }
     }
 }
