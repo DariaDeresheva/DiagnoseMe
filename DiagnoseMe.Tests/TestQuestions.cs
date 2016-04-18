@@ -50,5 +50,11 @@ namespace DiagnoseMe.Tests
         {
             Assert.DoesNotThrow(() => Doctor.GetAllDiseaseStrings(), @"File not found.");
         }
+
+        [Test]
+        public void GetAllParsedDiseases()
+        {
+            Assert.DoesNotThrow(() => Doctor.GetAllDiseaseStrings().Select(Disease.Parse), @"Disease parse error.");
+        }
     }
 }
