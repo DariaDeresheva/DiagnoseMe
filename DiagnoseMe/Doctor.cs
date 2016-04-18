@@ -22,12 +22,12 @@ namespace DiagnoseMe
 
         public static IEnumerable<Question> GetAllQuestions()
         {
-            return File.ReadLines(FileWithQuestions).Select(Question.Parse);
+            return GetAllQuestionStrings().Select(Question.Parse);
         }
 
         public static IEnumerable<Disease> GetAllDiseases()
         {
-            return File.ReadLines(FileWithDiseases).Select(Disease.Parse);
+            return GetAllDiseaseStrings().Select(Disease.Parse);
         }
 
         public static Disease FindDisease(IEnumerable<Question> answeredQuestions, IEnumerable<Disease> diseases)
@@ -38,6 +38,15 @@ namespace DiagnoseMe
             return
                 diseases.OrderByDescending(disease => disease.NumbersOfSymptoms.Intersect(answeredAsTrueNumbers).Count())
                     .First();
+        }
+
+        public static string FindHumanDiagnose()
+        {
+            var questions = GetAllQuestions();
+            var answeredQuestions = Human.AnswerOnQuestions(questions);
+            var diseases = GetAllDiseases();
+            var mostSuitableDisease = FindDisease(answeredQuestions, diseases);
+            return mostSuitableDisease.Name;
         }
     }
 }

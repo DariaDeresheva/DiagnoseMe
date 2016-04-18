@@ -12,15 +12,22 @@ namespace DiagnoseMe
             return question;
         }
 
-        public static bool ChooseAnswer()
+        public static bool ChooseAnswer(Question question)
         {
+            Console.WriteLine(question.Text);
+            Console.WriteLine(@"Ответьте true или false.");
             var stringAnswer = Console.ReadLine();
+            while (stringAnswer != null && stringAnswer != "true" && stringAnswer != "false")
+            {
+                Console.WriteLine(@"Ответьте true или false.");
+                stringAnswer = Console.ReadLine();
+            }
             return stringAnswer != null && bool.Parse(stringAnswer);
         }
 
         public static IEnumerable<Question> AnswerOnQuestions(IEnumerable<Question> questions)
         {
-            return questions.Select(question => AnswerOnQuestion(question, ChooseAnswer()));
+            return questions.Select(question => AnswerOnQuestion(question, ChooseAnswer(question))).ToList();
         }
     }
 }

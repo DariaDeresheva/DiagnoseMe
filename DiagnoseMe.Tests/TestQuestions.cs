@@ -37,7 +37,8 @@ namespace DiagnoseMe.Tests
         [Test]
         public void ChooseAnswer()
         {
-            Assert.That(Human.ChooseAnswer() == false, @"Default human's answer error.");
+            var question = new Question();
+            Assert.That(Human.ChooseAnswer(question) == false, @"Default human's answer error.");
         }
 
         [Test]
