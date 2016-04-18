@@ -9,6 +9,8 @@ namespace DiagnoseMe
 
         public string Text { get; set; }
 
+        public bool IsAnsweredAsTrue { get; set; }
+
         public static Question Parse(string value)
         {
             var number = int.Parse(value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).First());

@@ -23,5 +23,14 @@ namespace DiagnoseMe.Tests
         {
             Assert.DoesNotThrow(() => Doctor.GetAllQuestions(), @"Question parse error.");
         }
+
+        [Test]
+        public void AnswerOnQuestion()
+        {
+            var question = new Question();
+            const bool answer = true;
+            Human.AnswerOnQuestion(question, answer);
+            Assert.That(question.IsAnsweredAsTrue, @"Human answer error.");
+        }
     }
 }
