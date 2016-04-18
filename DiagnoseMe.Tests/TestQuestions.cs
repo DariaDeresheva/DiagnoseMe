@@ -56,5 +56,11 @@ namespace DiagnoseMe.Tests
         {
             Assert.DoesNotThrow(() => Doctor.GetAllDiseaseStrings().Select(Disease.Parse), @"Disease parse error.");
         }
+
+        [Test]
+        public void GetAllDiseases()
+        {
+            Assert.DoesNotThrow(() => Doctor.GetAllDiseases(), @"Disease parse error.");
+        }
     }
 }

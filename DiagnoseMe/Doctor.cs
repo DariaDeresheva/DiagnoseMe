@@ -24,5 +24,10 @@ namespace DiagnoseMe
         {
             return File.ReadLines(FileWithQuestions).Select(Question.Parse);
         }
+
+        public static IEnumerable<Disease> GetAllDiseases()
+        {
+            return File.ReadLines(FileWithDiseases).Select(Disease.Parse);
+        }
     }
 }
