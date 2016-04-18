@@ -32,5 +32,11 @@ namespace DiagnoseMe.Tests
             Human.AnswerOnQuestion(question, answer);
             Assert.That(question.IsAnsweredAsTrue, @"Human answer error.");
         }
+
+        [Test]
+        public void ChooseAnswer()
+        {
+            Assert.That(Human.ChooseAnswer() == false, @"Default human answer error.");
+        }
     }
 }
