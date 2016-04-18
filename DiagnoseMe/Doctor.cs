@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DiagnoseMe
 {
@@ -10,6 +11,11 @@ namespace DiagnoseMe
         public static IEnumerable<string> GetAllQuestionStrings()
         {
             return File.ReadLines(FileWithQuestions);
-        } 
+        }
+
+        public static IEnumerable<Question> GetAllQuestions()
+        {
+            return File.ReadLines(FileWithQuestions).Select(Question.Parse);
+        }
     }
 }
